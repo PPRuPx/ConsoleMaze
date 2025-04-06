@@ -18,29 +18,29 @@ public abstract class Unit
         _renderer.SetPixel(X, Y, _symbol);
     }
 
-    public virtual bool TryMoveLeft(char[,] map)
+    public virtual bool TryMoveLeft()
     {
-        return TryChangePosition(X - 1, Y, map);
+        return TryChangePosition(X - 1, Y);
     }
     
-    public virtual bool TryMoveRight(char[,] map)
+    public virtual bool TryMoveRight()
     {
-        return TryChangePosition(X + 1, Y, map);
+        return TryChangePosition(X + 1, Y);
     }
     
-    public virtual bool TryMoveUp(char[,] map)
+    public virtual bool TryMoveUp()
     {
-        return TryChangePosition(X, Y - 1, map);
+        return TryChangePosition(X, Y - 1);
     }
     
-    public virtual bool TryMoveDown(char[,] map)
+    public virtual bool TryMoveDown()
     {
-        return TryChangePosition(X, Y + 1, map);
+        return TryChangePosition(X, Y + 1);
     }
     
-    protected bool TryChangePosition(int newX, int newY, char[,] map)
+    protected bool TryChangePosition(int newX, int newY)
     {
-        if (map[newX, newY] == '#')
+        if (GameData.GetInstance().Map[newX, newY] == '#')
             return false;
         
         _renderer.SetPixel(X, Y, ' ');

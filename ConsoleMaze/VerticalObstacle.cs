@@ -3,24 +3,22 @@
 public class VerticalObstacle : Unit
 {
     private bool _obstacleDownDir = true;
-    private char[,] _map;
     
-    public VerticalObstacle(int startX, int startY, char symbol, ConsoleRenderer renderer, char[,] map)
+    public VerticalObstacle(int startX, int startY, char symbol, ConsoleRenderer renderer)
         : base(startX, startY, symbol, renderer)
     {
-        _map = map;
     }
 
     public override void Update()
     {
         if (_obstacleDownDir)
         {
-            if (!TryMoveDown(_map))
+            if (!TryMoveDown())
                 _obstacleDownDir = false;
         }
         else
         {
-            if (!TryMoveUp(_map))
+            if (!TryMoveUp())
                 _obstacleDownDir = true;
         }
     }
