@@ -5,7 +5,7 @@ class GameData
     private static GameData _instance;
     public char[,] Map { get; }
 
-    private GameData() 
+    private GameData()
     {
         Map = TransformArray(new[,]
         {
@@ -21,7 +21,7 @@ class GameData
             { '#', '#', '#', '#', '#', '#', '#', '#', '#', '#' }
         });
 
-        static char[,] TransformArray(char[,] map) => 
+        static char[,] TransformArray(char[,] map) =>
             MirrorVertically(Rotate90Clockwise(map));
 
         static char[,] Rotate90Clockwise(char[,] map)
@@ -44,7 +44,7 @@ class GameData
             char[,] mirrored = new char[rows, cols];
 
             for (int i = 0; i < rows; i++)
-            for (int j = 0; j < cols; j++) 
+            for (int j = 0; j < cols; j++)
                 mirrored[i, cols - 1 - j] = map[i, j];
 
             return mirrored;
@@ -55,8 +55,7 @@ class GameData
     {
         if (_instance == null)
             _instance = new GameData();
-        
+
         return _instance;
     }
-    
 }

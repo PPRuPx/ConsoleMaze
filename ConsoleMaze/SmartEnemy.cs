@@ -5,8 +5,8 @@ public class SmartEnemy : Unit
     private Unit _target;
     private int[] _dx = { -1, 0, 1, 0 };
     private int[] _dy = { 0, 1, 0, -1 };
-    
-    public SmartEnemy(int startX, int startY, char symbol, ConsoleRenderer renderer, Unit target) 
+
+    public SmartEnemy(int startX, int startY, char symbol, ConsoleRenderer renderer, Unit target)
         : base(startX, startY, symbol, renderer)
     {
         _target = target;
@@ -15,7 +15,7 @@ public class SmartEnemy : Unit
     public override void Update()
     {
         List<Node>? path = FindPath();
-        
+
         if (path == null)
             return;
 
@@ -56,7 +56,7 @@ public class SmartEnemy : Unit
                 path.Reverse();
                 return path;
             }
-            
+
             for (int i = 0; i < _dx.Length; i++)
             {
                 int newX = currentNode.X + _dx[i];
@@ -65,14 +65,14 @@ public class SmartEnemy : Unit
                 if (IsValid(newX, newY))
                 {
                     Node neighbor = new Node(newX, newY);
-                    
+
                     if (closedList.Contains(neighbor))
                         continue;
 
                     neighbor.Parent = currentNode;
                     neighbor.CalculateEstimate(targetNode.X, targetNode.Y);
                     neighbor.CalculateValue();
-                    
+
                     openList.Add(neighbor);
                 }
             }

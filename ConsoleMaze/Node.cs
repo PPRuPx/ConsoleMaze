@@ -15,15 +15,11 @@ public class Node
         Y = y;
     }
 
-    public void CalculateEstimate(int targetX, int targetY)
-    {
+    public void CalculateEstimate(int targetX, int targetY) =>
         Estimate = Math.Abs(X - targetX) + Math.Abs(Y - targetY);
-    }
-    
-    public void CalculateValue()
-    {
+
+    public void CalculateValue() =>
         Value = Cost + Estimate;
-    }
 
     public override bool Equals(object? obj)
     {

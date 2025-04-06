@@ -2,8 +2,8 @@
 
 public class VerticalObstacle : Unit
 {
-    private bool _obstacleDownDir = true;
-    
+    private bool _isDownDirection = true;
+
     public VerticalObstacle(int startX, int startY, char symbol, ConsoleRenderer renderer)
         : base(startX, startY, symbol, renderer)
     {
@@ -11,15 +11,10 @@ public class VerticalObstacle : Unit
 
     public override void Update()
     {
-        if (_obstacleDownDir)
-        {
-            if (!TryMoveDown())
-                _obstacleDownDir = false;
-        }
-        else
-        {
-            if (!TryMoveUp())
-                _obstacleDownDir = true;
-        }
+        if (_isDownDirection && !TryMoveDown())
+            _isDownDirection = false;
+
+        if (!_isDownDirection && !TryMoveUp())
+            _isDownDirection = true;
     }
 }

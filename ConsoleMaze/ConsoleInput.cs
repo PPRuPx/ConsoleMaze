@@ -6,14 +6,12 @@ public class ConsoleInput : IMoveInput
     public event Action? MoveDown;
     public event Action? MoveLeft;
     public event Action? MoveRight;
-    
+
     public void Update()
     {
-        ConsoleKeyInfo keyInfo;
         if (Console.KeyAvailable)
         {
-            keyInfo = Console.ReadKey();
-            switch (keyInfo.Key)
+            switch (Console.ReadKey().Key)
             {
                 case ConsoleKey.UpArrow:
                     MoveUp?.Invoke();
