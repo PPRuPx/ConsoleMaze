@@ -5,9 +5,10 @@ abstract class Program
     static void Main(string[] args)
     {
         var renderer = new ConsoleRenderer();
+        var input = new ConsoleInput();
         DrawMap(GameData.GetInstance().Map, renderer);
 
-        var player = new Player(1, 1, renderer);
+        var player = new Player(1, 1, renderer, input);
         var obstacle1 = new VerticalObstacle(4, 1, '!', renderer);
         var obstacle2 = new VerticalObstacle(5, 8, '!', renderer);
         var smartEnemy = new SmartEnemy(8, 8, '$', renderer, player);
@@ -22,7 +23,10 @@ abstract class Program
 
         while (true)
         {
-            foreach (Unit unit in units) unit.Update();
+            input.Update();
+            
+            foreach (Unit unit in units) 
+                unit.Update();
             
             renderer.Render();
             Thread.Sleep(300);
